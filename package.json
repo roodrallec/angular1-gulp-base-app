@@ -1,0 +1,64 @@
+{
+  "name": "proselytize",
+  "version": "1.0.0",
+  "description": "PDF and HTML document-to-text conversion service",
+  "main": "server.js",
+  "scripts": {
+    "build": "gulp build",
+    "start": "NODE_ENV=production node server.js",
+    "start:test": "NODE_ENV=test node server.js",
+    "test": "NODE_ENV=test mocha -r test/test-helper.js --compilers js:babel-core/register --recursive test",
+    "test:watch": "NODE_ENV=test mocha -w -r test/test-helper.js --compilers js:babel-core/register --recursive test",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roodrallec/proselytize.git"
+  },
+  "keywords": [
+    "pdf",
+    "html",
+    "text",
+    "conversion",
+    "queue"
+  ],
+  "author": "Jorge Alexander",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roodrallec/proselytize/issues"
+  },
+  "homepage": "https://github.com/roodrallec/proselytize#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "mocha": "^3.2.0",
+    "sinon": "^2.1.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-register": "^6.24.0",
+    "body-parser": "^1.17.1",
+    "browser-sync": "^2.18.8",
+    "del": "^2.2.2",
+    "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.6",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.1.2",
+    "gulp-useref": "^3.1.2",
+    "method-override": "^2.3.8",
+    "mongoose": "^4.9.2",
+    "morgan": "^1.8.1",
+    "node-yaml-config": "0.0.4",
+    "run-sequence": "^1.2.2",
+    "winston": "^2.3.1"
+  }
+}

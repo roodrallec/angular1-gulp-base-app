@@ -1,0 +1,5 @@
+public/assets/libs
+node_modules
+test
+.git
+logs/*
