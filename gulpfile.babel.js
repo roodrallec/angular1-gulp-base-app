@@ -43,7 +43,7 @@ gulp.task('browserSync', () => {
 gulp.task('useref', () => {
   gulp.src('public/*.html')
     .pipe(useref())
-    .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulpIf('*.js', uglify({ mangle: false })))
     .pipe(gulpIf('*.css', cssnano()))
     .pipe(gulp.dest('dist'));
 });
@@ -65,6 +65,7 @@ gulp.task('watch', ['browserSync', 'sass'], () => {
   gulp.watch('public/assets/scss/**/*.scss', ['sass']);
   gulp.watch('public/*.html', browserSync.reload);
   gulp.watch('public/assets/js/**/*.js', browserSync.reload);
+  gulp.watch('public/app/**/*.js', browserSync.reload);
 });
 // Cleaning generated files
 gulp.task('clean:dist', () => {

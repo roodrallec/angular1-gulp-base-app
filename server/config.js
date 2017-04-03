@@ -10,4 +10,8 @@ if (process.env.EXPRESS_PORT) {
   config.expressPort = process.env.EXPRESS_PORT;
 }
 
+if (process.env.EXPRESS_SERVER) {
+  config.expressServer = process.env.EXPRESS_SERVER;
+}
+
 module.exports = config;

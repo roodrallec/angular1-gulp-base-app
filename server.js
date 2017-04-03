@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -10,10 +11,11 @@ const app = express();
 app.use(morgan('combined', { stream: logger.stream }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(express.static(path.join(__dirname, '/dist')));
+app.get('/', (req, res) => res.sendFile(`${__dirname}/dist/index.html`));
 app.use('/', routes);
 
 let server;
-
 module.exports = {
   start: () => {
     mongoose.connect(config.mongoUrl);
