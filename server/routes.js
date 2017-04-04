@@ -1,31 +1,38 @@
 const express = require('express');
-const Conversion = require('./models').Conversion;
-const ConversionBuilder = require('./builders/conversion-builder.js');
+const timeout = require('connect-timeout');
+const config = require('./config')
+const conversionService = require('./services/conversion-service');
 
 const router = express.Router();
 
-function getConversion(req, res) {
-  const query = Conversion.find({});
-  query.exec((err, conversions) => {
-    if (err) res.send(err);
+router.get('/conversions', getConversions);
+router.post('/convertPdf', postConvertPdf);
+router.post('/convertHtml', postConvertHtml);
+
+function getConversions(req, res) {
+  return conversionService.getConversions().then((err, conversions) => {
     res.json(conversions);
-  });
+  }).catch(res.send)
 }
 
-function postConversion(req, res) {
-  const conversion = new Conversion(req.body);
-  const builder = new ConversionBuilder();
-  const text =
-  newConversion.save((err, conversion) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json({ message: 'Conversion added to queue', conversion });
-    }
-  });
+function postConvertPdf(req, res) {
+  setTimeout(function() {
+      next();
+  }, config.timeoutMs.pdf)
+
+  return conversionService.convert(req, 'pdf').then((text) => {
+    return res.json({ text });
+  }).catch(res.send)
 }
 
-router.get('/conversion', getConversion);
-router.post('/conversion', postConversion);
+function postConvertHtml(req, res) {
+  setTimeout(function() {
+      next();
+  }, config.timeoutMs.html)
+
+  return conversionService.convert(req, 'html').then((text) => {
+    return res.json({ text });
+  }).catch(res.send)
+}
 
 module.exports = router;

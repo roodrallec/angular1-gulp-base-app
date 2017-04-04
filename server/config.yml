@@ -2,5 +2,8 @@ default: &default
   mongoUrl: 'mongodb://127.0.0.1:27017/conversions'
   expressPort: 8080
   expressServer: 'http://localhost'
+  timoutMs:
+    pdf: 100000
+    html: 10000
 test:
   <<: *default
