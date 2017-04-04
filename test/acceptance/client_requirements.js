@@ -1,5 +1,5 @@
 const server = require('../../server');
-const Conversion = require('../../server/models').Conversion;
+const Conversion = require('../../server/models/conversion');
 
 describe('requests', () => {
   before(server.start);
@@ -41,7 +41,7 @@ describe('requests', () => {
           output: 'text',
           data: '',
         };
-        request('/conversion', 'POST', conversion).then((resp) => {
+        request('/convertPdf', 'POST', conversion).then((resp) => {
           expect(resp.statusCode).to.eql(200);
           expect(resp.body).to.be.a('object');
           expect(resp.body.position).to.eql(1);

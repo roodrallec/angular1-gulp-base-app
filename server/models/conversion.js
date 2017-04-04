@@ -7,8 +7,8 @@ const mongoose = require('mongoose');
 // status: conversion status
 // data: conversion data
 const CONVERSION_TYPES = ['pdf', 'html'];
-
-const ConversionSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+const ConversionSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -24,18 +24,18 @@ const ConversionSchema = new mongoose.Schema({
   },
   status: {
     type: Number,
-    required: false
+    required: false,
   },
   data: {
     type: Schema.Types.Mixed,
-    required: true
+    required: true,
   },
   text: {
     type: String,
-    required: false
+    required: false,
   },
 });
 
 const Conversion = mongoose.model('conversion', ConversionSchema);
 
-module.exports = Conversion
+module.exports = Conversion;

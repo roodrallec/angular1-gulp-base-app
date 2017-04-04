@@ -1,13 +1,11 @@
-const PdfConversion = require('../models/pdf-conversion')
-
-class PdfConversionBuilder() {
-  constructor() {
-    this.pdfConversion = new PdfConversion();
+class PdfConversionBuilder {
+  constructor(pdfConversion) {
+    this.pdfConversion = pdfConversion;
   }
 
   build() {
     this.pdfConversion.convert();
   }
-};
+}
 
 module.exports = PdfConversionBuilder;
