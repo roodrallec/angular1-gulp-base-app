@@ -2,15 +2,15 @@ const Conversion = require('../models/conversion.js');
 const HtmlConversionBuilder = require('../builders/html-conversion-builder.js');
 const PdfConversionBuilder = require('../builders/pdf-conversion-builder.js');
 
-class ConversionService {
-  getConversions() {
-    return Conversion.find({});
-  }
+export default {
+  getConversions: () => {
+    Conversion.find({});
+  },
 
-  convert(request, type) {
+  convert: (request, type) => {
     const conversion = new Conversion(request);
 
-    if (conversion.validateSync()) throw new Error('Conversion Request not valid');
+    if (conversion.validateSync()) throw new Error(conversion.validateSync());
 
     switch (type) {
       case 'pdf':
@@ -20,7 +20,5 @@ class ConversionService {
       default:
         return conversion;
     }
-  }
-}
-
-module.exports = new ConversionService();
+  },
+};

@@ -36,6 +36,13 @@ const ConversionSchema = new Schema({
   },
 });
 
-const Conversion = mongoose.model('conversion', ConversionSchema);
+const Conversion = () => {
+  try {
+    return mongoose.model('conversion', ConversionSchema);
+  } catch (e) {
+    if (e.name !== 'OverwriteModelError') throw e;
+    return mongoose.model('conversion');
+  }
+};
 
-module.exports = Conversion;
+module.exports = Conversion();

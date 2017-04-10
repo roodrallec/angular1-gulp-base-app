@@ -10,17 +10,20 @@ function getConversions(req, res) {
   }).catch(res.send);
 }
 
-function postConvertPdf(req, res) {
+function postConvertPdf(req, res, next) {
+  const file = req.files.file;
+  const timeout = config.timoutMs.pdf;
+
   setTimeout(() => {
     next();
-  }, config.timeoutMs.pdf);
+  }, timeout);
 
-  return conversionService.convert(req, 'pdf').then((text) => {
+  return conversionService.convert(file, 'pdf').then((text) => {
     res.json({ text });
   }).catch(res.send);
 }
 
-function postConvertHtml(req, res) {
+function postConvertHtml(req, res, next) {
   setTimeout(() => {
     next();
   }, config.timeoutMs.html);
